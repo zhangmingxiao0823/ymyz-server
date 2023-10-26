@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.ymyz</groupId>
+        <artifactId>ymyz</artifactId>
+        <version>3.6.3</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>ymyz-common-log</module>
+        <module>ymyz-common-core</module>
+        <module>ymyz-common-redis</module>
+        <module>ymyz-common-seata</module>
+        <module>ymyz-common-swagger</module>
+        <module>ymyz-common-security</module>
+        <module>ymyz-common-datascope</module>
+        <module>ymyz-common-datasource</module>
+    </modules>
+
+    <artifactId>ymyz-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        ymyz-common通用模块
+    </description>
+
+</project>

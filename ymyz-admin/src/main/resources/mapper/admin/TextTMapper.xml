@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymyz.admin.mapper.TextTMapper">
+    
+    <resultMap type="com.ymyz.admin.entity.TextT" id="TextTResult">
+        <result property="textId"    column="text_id"    />
+        <result property="textContent"    column="text_content"    />
+        <result property="textFile"    column="text_file"    />
+        <result property="musicDel"    column="music_del"    />
+        <result property="createName"    column="create_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateName"    column="update_name"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectTextTVo">
+        select text_id, text_content, text_file, music_del, create_name, create_time, update_name, update_time from text_t
+    </sql>
+
+    <select id="selectTextTList" parameterType="TextT" resultMap="TextTResult">
+        <include refid="selectTextTVo"/>
+        <where>  
+            <if test="textContent != null  and textContent != ''"> and text_content = #{textContent}</if>
+            <if test="textFile != null  and textFile != ''"> and text_file = #{textFile}</if>
+            <if test="musicDel != null "> and music_del = #{musicDel}</if>
+            <if test="createName != null  and createName != ''"> and create_name like concat('%', #{createName}, '%')</if>
+            <if test="updateName != null  and updateName != ''"> and update_name like concat('%', #{updateName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTextTByTextId" parameterType="Long" resultMap="TextTResult">
+        <include refid="selectTextTVo"/>
+        where text_id = #{textId}
+    </select>
+        
+    <insert id="insertTextT" parameterType="TextT" useGeneratedKeys="true" keyProperty="textId">
+        insert into text_t
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="textContent != null">text_content,</if>
+            <if test="textFile != null">text_file,</if>
+            <if test="musicDel != null">music_del,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateName != null">update_name,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="textContent != null">#{textContent},</if>
+            <if test="textFile != null">#{textFile},</if>
+            <if test="musicDel != null">#{musicDel},</if>
+            <if test="createName != null">#{createName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateName != null">#{updateName},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTextT" parameterType="TextT">
+        update text_t
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="textContent != null">text_content = #{textContent},</if>
+            <if test="textFile != null">text_file = #{textFile},</if>
+            <if test="musicDel != null">music_del = #{musicDel},</if>
+            <if test="createName != null">create_name = #{createName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateName != null">update_name = #{updateName},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where text_id = #{textId}
+    </update>
+
+    <delete id="deleteTextTByTextId" parameterType="Long">
+        delete from text_t where text_id = #{textId}
+    </delete>
+
+    <delete id="deleteTextTByTextIds" parameterType="String">
+        delete from text_t where text_id in 
+        <foreach item="textId" collection="array" open="(" separator="," close=")">
+            #{textId}
+        </foreach>
+    </delete>
+</mapper>

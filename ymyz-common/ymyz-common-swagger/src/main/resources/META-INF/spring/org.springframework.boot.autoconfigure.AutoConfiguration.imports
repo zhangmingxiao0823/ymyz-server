@@ -1,0 +1,3 @@
+# com.ymyz.common.swagger.config.SwaggerAutoConfiguration
+# com.ymyz.common.swagger.config.SwaggerWebConfiguration
+# com.ymyz.common.swagger.config.SwaggerBeanPostProcessor

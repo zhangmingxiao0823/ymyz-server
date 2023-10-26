@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymyz.admin.mapper.MusicTMapper">
+    
+    <resultMap type="com.ymyz.admin.entity.MusicT" id="MusicTResult">
+        <result property="musicId"    column="music_id"    />
+        <result property="imageId"    column="image_id"    />
+        <result property="textId"    column="text_id"    />
+        <result property="musicName"    column="music_name"    />
+        <result property="musicFormat"    column="music_format"    />
+        <result property="musicType"    column="music_type"    />
+        <result property="musicAuthor"    column="music_author"    />
+        <result property="musicFile"    column="music_file"    />
+        <result property="musicDel"    column="music_del"    />
+        <result property="createName"    column="create_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateName"    column="update_name"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMusicTVo">
+        select music_id, image_id, text_id, music_name, music_format, music_type, music_author, music_file, music_del, create_name, create_time, update_name, update_time from music_t
+    </sql>
+
+    <select id="selectMusicTList" parameterType="MusicT" resultMap="MusicTResult">
+        <include refid="selectMusicTVo"/>
+        <where>  
+            <if test="imageId != null "> and image_id = #{imageId}</if>
+            <if test="textId != null "> and text_id = #{textId}</if>
+            <if test="musicName != null  and musicName != ''"> and music_name like concat('%', #{musicName}, '%')</if>
+            <if test="musicFormat != null "> and music_format = #{musicFormat}</if>
+            <if test="musicType != null "> and music_type = #{musicType}</if>
+            <if test="musicAuthor != null  and musicAuthor != ''"> and music_author = #{musicAuthor}</if>
+            <if test="musicFile != null  and musicFile != ''"> and music_file = #{musicFile}</if>
+            <if test="musicDel != null "> and music_del = #{musicDel}</if>
+            <if test="createName != null  and createName != ''"> and create_name like concat('%', #{createName}, '%')</if>
+            <if test="updateName != null  and updateName != ''"> and update_name like concat('%', #{updateName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectMusicTByMusicId" parameterType="Long" resultMap="MusicTResult">
+        <include refid="selectMusicTVo"/>
+        where music_id = #{musicId}
+    </select>
+        
+    <insert id="insertMusicT" parameterType="MusicT" useGeneratedKeys="true" keyProperty="musicId">
+        insert into music_t
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="imageId != null">image_id,</if>
+            <if test="textId != null">text_id,</if>
+            <if test="musicName != null and musicName != ''">music_name,</if>
+            <if test="musicFormat != null">music_format,</if>
+            <if test="musicType != null">music_type,</if>
+            <if test="musicAuthor != null">music_author,</if>
+            <if test="musicFile != null">music_file,</if>
+            <if test="musicDel != null">music_del,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateName != null">update_name,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="imageId != null">#{imageId},</if>
+            <if test="textId != null">#{textId},</if>
+            <if test="musicName != null and musicName != ''">#{musicName},</if>
+            <if test="musicFormat != null">#{musicFormat},</if>
+            <if test="musicType != null">#{musicType},</if>
+            <if test="musicAuthor != null">#{musicAuthor},</if>
+            <if test="musicFile != null">#{musicFile},</if>
+            <if test="musicDel != null">#{musicDel},</if>
+            <if test="createName != null">#{createName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateName != null">#{updateName},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMusicT" parameterType="MusicT">
+        update music_t
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="imageId != null">image_id = #{imageId},</if>
+            <if test="textId != null">text_id = #{textId},</if>
+            <if test="musicName != null and musicName != ''">music_name = #{musicName},</if>
+            <if test="musicFormat != null">music_format = #{musicFormat},</if>
+            <if test="musicType != null">music_type = #{musicType},</if>
+            <if test="musicAuthor != null">music_author = #{musicAuthor},</if>
+            <if test="musicFile != null">music_file = #{musicFile},</if>
+            <if test="musicDel != null">music_del = #{musicDel},</if>
+            <if test="createName != null">create_name = #{createName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateName != null">update_name = #{updateName},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where music_id = #{musicId}
+    </update>
+
+    <delete id="deleteMusicTByMusicId" parameterType="Long">
+        delete from music_t where music_id = #{musicId}
+    </delete>
+
+    <delete id="deleteMusicTByMusicIds" parameterType="String">
+        delete from music_t where music_id in 
+        <foreach item="musicId" collection="array" open="(" separator="," close=")">
+            #{musicId}
+        </foreach>
+    </delete>
+</mapper>

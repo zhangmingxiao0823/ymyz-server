@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymyz.admin.mapper.VideoTMapper">
+    
+    <resultMap type="com.ymyz.admin.entity.VideoT" id="VideoTResult">
+        <result property="videoId"    column="video_id"    />
+        <result property="imageId"    column="image_id"    />
+        <result property="textId"    column="text_id"    />
+        <result property="videoName"    column="video_name"    />
+        <result property="videoFormat"    column="video_format"    />
+        <result property="videoType"    column="video_type"    />
+        <result property="videoAuthor"    column="video_author"    />
+        <result property="videoFile"    column="video_file"    />
+        <result property="videoDel"    column="video_del"    />
+        <result property="createName"    column="create_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateName"    column="update_name"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectVideoTVo">
+        select video_id, image_id, text_id, video_name, video_format, video_type, video_author, video_file, video_del, create_name, create_time, update_name, update_time from video_t
+    </sql>
+
+    <select id="selectVideoTList" parameterType="com.ymyz.admin.entity.VideoT" resultMap="VideoTResult">
+        <include refid="selectVideoTVo"/>
+        <where>  
+            <if test="imageId != null "> and image_id = #{imageId}</if>
+            <if test="textId != null "> and text_id = #{textId}</if>
+            <if test="videoName != null  and videoName != ''"> and video_name like concat('%', #{videoName}, '%')</if>
+            <if test="videoFormat != null "> and video_format = #{videoFormat}</if>
+            <if test="videoType != null "> and video_type = #{videoType}</if>
+            <if test="videoAuthor != null  and videoAuthor != ''"> and video_author = #{videoAuthor}</if>
+            <if test="videoFile != null  and videoFile != ''"> and video_file = #{videoFile}</if>
+            <if test="videoDel != null "> and video_del = #{videoDel}</if>
+            <if test="createName != null  and createName != ''"> and create_name like concat('%', #{createName}, '%')</if>
+            <if test="updateName != null  and updateName != ''"> and update_name like concat('%', #{updateName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectVideoTByVideoId" parameterType="Long" resultMap="VideoTResult">
+        <include refid="selectVideoTVo"/>
+        where video_id = #{videoId}
+    </select>
+        
+    <insert id="insertVideoT" parameterType="com.ymyz.admin.entity.VideoT" useGeneratedKeys="true" keyProperty="videoId">
+        insert into video_t
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="imageId != null">image_id,</if>
+            <if test="textId != null">text_id,</if>
+            <if test="videoName != null and videoName != ''">video_name,</if>
+            <if test="videoFormat != null">video_format,</if>
+            <if test="videoType != null">video_type,</if>
+            <if test="videoAuthor != null">video_author,</if>
+            <if test="videoFile != null">video_file,</if>
+            <if test="videoDel != null">video_del,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateName != null">update_name,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="imageId != null">#{imageId},</if>
+            <if test="textId != null">#{textId},</if>
+            <if test="videoName != null and videoName != ''">#{videoName},</if>
+            <if test="videoFormat != null">#{videoFormat},</if>
+            <if test="videoType != null">#{videoType},</if>
+            <if test="videoAuthor != null">#{videoAuthor},</if>
+            <if test="videoFile != null">#{videoFile},</if>
+            <if test="videoDel != null">#{videoDel},</if>
+            <if test="createName != null">#{createName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateName != null">#{updateName},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateVideoT" parameterType="com.ymyz.admin.entity.VideoT">
+        update video_t
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="imageId != null">image_id = #{imageId},</if>
+            <if test="textId != null">text_id = #{textId},</if>
+            <if test="videoName != null and videoName != ''">video_name = #{videoName},</if>
+            <if test="videoFormat != null">video_format = #{videoFormat},</if>
+            <if test="videoType != null">video_type = #{videoType},</if>
+            <if test="videoAuthor != null">video_author = #{videoAuthor},</if>
+            <if test="videoFile != null">video_file = #{videoFile},</if>
+            <if test="videoDel != null">video_del = #{videoDel},</if>
+            <if test="createName != null">create_name = #{createName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateName != null">update_name = #{updateName},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where video_id = #{videoId}
+    </update>
+
+    <delete id="deleteVideoTByVideoId" parameterType="Long">
+        delete from video_t where video_id = #{videoId}
+    </delete>
+
+    <delete id="deleteVideoTByVideoIds" parameterType="String">
+        delete from video_t where video_id in 
+        <foreach item="videoId" collection="array" open="(" separator="," close=")">
+            #{videoId}
+        </foreach>
+    </delete>
+</mapper>
