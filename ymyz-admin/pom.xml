@@ -39,18 +39,18 @@
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
-    <!-- RuoYi Common DataSource -->
+    <!-- RuoYi Common DataSource
     <dependency>
         <groupId>com.ymyz</groupId>
         <artifactId>ymyz-common-datasource</artifactId>
     </dependency>
 
-    <!-- RuoYi Common DataScope -->
+    &lt;!&ndash; RuoYi Common DataScope &ndash;&gt;
     <dependency>
         <groupId>com.ymyz</groupId>
         <artifactId>ymyz-common-datascope</artifactId>
     </dependency>
-
+-->
     <!-- Mysql Connector -->
     <dependency>
         <groupId>com.mysql</groupId>

@@ -30,7 +30,7 @@ public class MusicTController extends BaseController {
     /**
      * 查询【请填写功能名称】列表
      */
-    @RequiresPermissions("system:t:list")
+    @RequiresPermissions("admin:music:list")
     @GetMapping("/list")
     public TableDataInfo list(MusicT musicT) {
         startPage();
@@ -41,7 +41,7 @@ public class MusicTController extends BaseController {
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:t:export")
+    @RequiresPermissions("admin:music:export")
     @Log(title = "音乐管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, MusicT musicT) {
@@ -53,7 +53,7 @@ public class MusicTController extends BaseController {
     /**
      * 获取【请填写功能名称】详细信息
      */
-    @RequiresPermissions("system:t:query")
+    @RequiresPermissions("admin:music:query")
     @GetMapping(value = "/{musicId}")
     public AjaxResult getInfo(@PathVariable("musicId") Long musicId) {
         return success(musicTService.selectMusicTByMusicId(musicId));
@@ -62,7 +62,7 @@ public class MusicTController extends BaseController {
     /**
      * 新增【请填写功能名称】
      */
-    @RequiresPermissions("system:t:add")
+    @RequiresPermissions("admin:music:add")
     @Log(title = "音乐管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody MusicT musicT) {
@@ -72,7 +72,7 @@ public class MusicTController extends BaseController {
     /**
      * 修改【请填写功能名称】
      */
-    @RequiresPermissions("system:t:edit")
+    @RequiresPermissions("admin:music:edit")
     @Log(title = "音乐管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody MusicT musicT) {
@@ -82,7 +82,7 @@ public class MusicTController extends BaseController {
     /**
      * 删除【请填写功能名称】
      */
-    @RequiresPermissions("system:t:remove")
+    @RequiresPermissions("admin:music:remove")
     @Log(title = "音乐管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{musicIds}")
     public AjaxResult remove(@PathVariable Long[] musicIds) {
