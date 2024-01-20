@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="com.ymyz.admin.entity.VideoT" id="VideoTResult">
         <result property="videoId"    column="video_id"    />
-        <result property="imageId"    column="image_id"    />
+        <result property="photoId"    column="photo_id"    />
         <result property="textId"    column="text_id"    />
         <result property="videoName"    column="video_name"    />
         <result property="videoFormat"    column="video_format"    />
@@ -21,13 +21,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectVideoTVo">
-        select video_id, image_id, text_id, video_name, video_format, video_type, video_author, video_file, video_del, create_name, create_time, update_name, update_time from video_t
+        select video_id, photo_id, text_id, video_name, video_format, video_type, video_author, video_file, video_del, create_name, create_time, update_name, update_time from video_t
     </sql>
 
     <select id="selectVideoTList" parameterType="com.ymyz.admin.entity.VideoT" resultMap="VideoTResult">
         <include refid="selectVideoTVo"/>
         <where>  
-            <if test="imageId != null "> and image_id = #{imageId}</if>
+            <if test="photoId != null "> and photo_id = #{photoId}</if>
             <if test="textId != null "> and text_id = #{textId}</if>
             <if test="videoName != null  and videoName != ''"> and video_name like concat('%', #{videoName}, '%')</if>
             <if test="videoFormat != null "> and video_format = #{videoFormat}</if>
@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertVideoT" parameterType="com.ymyz.admin.entity.VideoT" useGeneratedKeys="true" keyProperty="videoId">
         insert into video_t
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="imageId != null">image_id,</if>
+            <if test="photoId != null">photo_id,</if>
             <if test="textId != null">text_id,</if>
             <if test="videoName != null and videoName != ''">video_name,</if>
             <if test="videoFormat != null">video_format,</if>
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="imageId != null">#{imageId},</if>
+            <if test="photoId != null">#{photoId},</if>
             <if test="textId != null">#{textId},</if>
             <if test="videoName != null and videoName != ''">#{videoName},</if>
             <if test="videoFormat != null">#{videoFormat},</if>
@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateVideoT" parameterType="com.ymyz.admin.entity.VideoT">
         update video_t
         <trim prefix="SET" suffixOverrides=",">
-            <if test="imageId != null">image_id = #{imageId},</if>
+            <if test="photoId != null">photo_id = #{photoId},</if>
             <if test="textId != null">text_id = #{textId},</if>
             <if test="videoName != null and videoName != ''">video_name = #{videoName},</if>
             <if test="videoFormat != null">video_format = #{videoFormat},</if>

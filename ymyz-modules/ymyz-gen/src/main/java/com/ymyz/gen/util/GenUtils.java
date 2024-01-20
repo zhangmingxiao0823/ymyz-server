@@ -114,9 +114,9 @@ public class GenUtils
             column.setHtmlType(GenConstants.HTML_SELECT);
         }
         // 图片字段设置图片上传控件
-        else if (StringUtils.endsWithIgnoreCase(columnName, "image"))
+        else if (StringUtils.endsWithIgnoreCase(columnName, "photo"))
         {
-            column.setHtmlType(GenConstants.HTML_IMAGE_UPLOAD);
+            column.setHtmlType(GenConstants.HTML_photo_UPLOAD);
         }
         // 文件字段设置文件上传控件
         else if (StringUtils.endsWithIgnoreCase(columnName, "file"))

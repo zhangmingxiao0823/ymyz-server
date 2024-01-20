@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymyz.admin.mapper.PhotoTMapper">
+    
+    <resultMap type="com.ymyz.admin.entity.PhotoT" id="PhotoTResult">
+        <result property="photoId"    column="photo_id"    />
+        <result property="photoName"    column="photo_name"    />
+        <result property="photoFormat"    column="photo_format"    />
+        <result property="photoType"    column="photo_type"    />
+        <result property="photoAuthor"    column="photo_author"    />
+        <result property="photoFile"    column="photo_file"    />
+        <result property="delFlag"    column="del_fiag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectPhotoTVo">
+        select photo_id, photo_name, photo_format, photo_type, photo_author, photo_file, del_flag, create_by, create_time, update_by, update_time from photo_t
+    </sql>
+
+    <select id="selectPhotoTList" parameterType="com.ymyz.admin.model.dto.PhotoDTO" resultMap="PhotoTResult">
+        <include refid="selectPhotoTVo"/>
+        <where>  
+            <if test="photoName != null  and photoName != ''"> and photo_name like concat('%', #{photoName}, '%')</if>
+            <if test="photoFormat != null "> and photo_format = #{photoFormat}</if>
+            <if test="photoType != null "> and photo_type = #{photoType}</if>
+            <if test="photoAuthor != null  and photoAuthor != ''"> and photo_author = #{photoAuthor}</if>
+            <if test="photoFile != null  and photoFile != ''"> and photo_file = #{photoFile}</if>
+            <if test="createBy != null  and createBy != ''"> and create_by like concat('%', #{createBy}, '%')</if>
+            <if test="updateBy != null  and updateBy != ''"> and update_by like concat('%', #{updateBy}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectPhotoTByphotoId" parameterType="Long" resultMap="PhotoTResult">
+        <include refid="selectPhotoTVo"/>
+        where photo_id = #{photoId}
+    </select>
+        
+    <insert id="insertPhotoT" parameterType="com.ymyz.admin.entity.PhotoT" useGeneratedKeys="true" keyProperty="photoId">
+        insert into photo_t
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="photoName != null and photoName != ''">photo_name,</if>
+            <if test="photoFormat != null">photo_format,</if>
+            <if test="PhotoType != null">photo_type,</if>
+            <if test="photoAuthor != null">photo_author,</if>
+            <if test="photoFile != null">photo_file,</if>
+            <if test="photoDel != null">photo_del,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateName != null">update_name,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="photoName != null and photoName != ''">#{photoName},</if>
+            <if test="photoFormat != null">#{photoFormat},</if>
+            <if test="PhotoType != null">#{PhotoType},</if>
+            <if test="photoAuthor != null">#{photoAuthor},</if>
+            <if test="photoFile != null">#{photoFile},</if>
+            <if test="photoDel != null">#{photoDel},</if>
+            <if test="createName != null">#{createName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateName != null">#{updateName},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePhotoT" parameterType="com.ymyz.admin.entity.PhotoT">
+        update photo_t
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="photoName != null and photoName != ''">photo_name = #{photoName},</if>
+            <if test="photoFormat != null">photo_format = #{photoFormat},</if>
+            <if test="PhotoType != null">photo_type = #{PhotoType},</if>
+            <if test="photoAuthor != null">photo_author = #{photoAuthor},</if>
+            <if test="photoFile != null">photo_file = #{photoFile},</if>
+            <if test="photoDel != null">photo_del = #{photoDel},</if>
+            <if test="createName != null">create_name = #{createName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateName != null">update_name = #{updateName},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where photo_id = #{photoId}
+    </update>
+
+    <delete id="deletePhotoTByphotoId" parameterType="Long">
+        delete from photo_t where photo_id = #{photoId}
+    </delete>
+
+    <delete id="deletePhotoTByphotoIds" parameterType="String">
+        delete from photo_t where photo_id in
+        <foreach item="photoId" collection="array" open="(" separator="," close=")">
+            #{photoId}
+        </foreach>
+    </delete>
+</mapper>

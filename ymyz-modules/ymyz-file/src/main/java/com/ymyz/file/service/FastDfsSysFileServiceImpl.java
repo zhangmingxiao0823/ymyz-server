@@ -1,14 +1,15 @@
 package com.ymyz.file.service;
 
-import java.io.InputStream;
 import com.alibaba.nacos.common.utils.IoUtils;
+import com.github.tobato.fastdfs.domain.fdfs.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import com.ymyz.common.core.utils.file.FileTypeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.github.tobato.fastdfs.domain.fdfs.StorePath;
-import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import com.ymyz.common.core.utils.file.FileTypeUtils;
+
+import java.io.InputStream;
 
 /**
  * FastDFS 文件存储
@@ -16,8 +17,7 @@ import com.ymyz.common.core.utils.file.FileTypeUtils;
  * @author zhangmingxiao
  */
 @Service
-public class FastDfsSysFileServiceImpl implements ISysFileService
-{
+public class FastDfsSysFileServiceImpl implements ISysFileService {
     /**
      * 域名或本机访问地址
      */
@@ -35,8 +35,7 @@ public class FastDfsSysFileServiceImpl implements ISysFileService
      * @throws Exception
      */
     @Override
-    public String uploadFile(MultipartFile file) throws Exception
-    {
+    public String uploadFile(MultipartFile file) throws Exception {
         InputStream inputStream = file.getInputStream();
         StorePath storePath = storageClient.uploadFile(inputStream, file.getSize(),
                 FileTypeUtils.getExtension(file), null);

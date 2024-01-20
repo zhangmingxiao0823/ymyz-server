@@ -28,7 +28,7 @@ spring:
       eager: true
       transport:
         # 控制台地址
-        dashboard: 39.105.203.152:8718
+        dashboard: 39.105.203.152:8858
       # nacos配置持久化
       datasource:
         ds1:

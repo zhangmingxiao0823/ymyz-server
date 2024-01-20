@@ -213,7 +213,7 @@
               :style="{ width: '100%' }"
               clearable
             >
-              <el-option label="图片" value="image/*" />
+              <el-option label="图片" value="photo/*" />
               <el-option label="视频" value="video/*" />
               <el-option label="音频" value="audio/*" />
               <el-option label="excel" value=".xls,.xlsx" />

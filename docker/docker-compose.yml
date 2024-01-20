@@ -2,7 +2,7 @@ version : '3.8'
 services:
   ymyz-nacos:
     container_name: ymyz-nacos
-    image: nacos/nacos-server
+    photo: nacos/nacos-server
     build:
       context: ./nacos
     environment:
@@ -18,7 +18,7 @@ services:
       - ymyz-mysql
   ymyz-mysql:
     container_name: ymyz-mysql
-    image: mysql:5.7
+    photo: mysql:5.7
     build:
       context: ./mysql
     ports:
@@ -40,7 +40,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
   ymyz-redis:
     container_name: ymyz-redis
-    image: redis
+    photo: redis
     build:
       context: ./redis
     ports:
@@ -51,7 +51,7 @@ services:
     command: redis-server /home/ymyz/redis/redis.conf
   ymyz-nginx:
     container_name: ymyz-nginx
-    image: nginx
+    photo: nginx
     build:
       context: ./nginx
     ports:

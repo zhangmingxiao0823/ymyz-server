@@ -35,6 +35,7 @@
         <minio.version>8.2.2</minio.version>
         <poi.version>4.1.2</poi.version>
         <lombok.version>1.18.26</lombok.version>
+        <mybatisplus.version>3.5.1</mybatisplus.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version>
     </properties>
 
@@ -212,6 +213,19 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatisplus.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.baomidou</groupId>
+                        <artifactId>mybatis-plus-generator</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
         </dependencies>

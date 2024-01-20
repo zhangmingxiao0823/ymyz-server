@@ -1,12 +1,10 @@
 package com.ymyz.admin.entity;
 
+import com.ymyz.common.core.annotation.Excel;
+import com.ymyz.common.core.web.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import com.ymyz.common.core.annotation.Excel;
-import com.ymyz.common.core.web.domain.BaseEntity;
 
 /**
  * 【请填写功能名称】对象 music_t
@@ -29,7 +27,13 @@ public class MusicT extends BaseEntity {
      * 音乐封面图片id
      */
     @Excel(name = "音乐封面图片id")
-    private Long imageId;
+    private Long photoId;
+
+    /**
+     * 音乐图片
+     */
+    @Excel(name = "音乐图片")
+    private String musicphoto;
 
     /**
      * 歌词文本id

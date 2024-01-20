@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select text_id, text_content, text_file, music_del, create_name, create_time, update_name, update_time from text_t
     </sql>
 
-    <select id="selectTextTList" parameterType="TextT" resultMap="TextTResult">
+    <select id="selectTextTList" parameterType="com.ymyz.admin.entity.TextT" resultMap="TextTResult">
         <include refid="selectTextTVo"/>
         <where>  
             <if test="textContent != null  and textContent != ''"> and text_content = #{textContent}</if>
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where text_id = #{textId}
     </select>
         
-    <insert id="insertTextT" parameterType="TextT" useGeneratedKeys="true" keyProperty="textId">
+    <insert id="insertTextT" parameterType="com.ymyz.admin.entity.TextT" useGeneratedKeys="true" keyProperty="textId">
         insert into text_t
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="textContent != null">text_content,</if>
@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateTextT" parameterType="TextT">
+    <update id="updateTextT" parameterType="com.ymyz.admin.entity.TextT">
         update text_t
         <trim prefix="SET" suffixOverrides=",">
             <if test="textContent != null">text_content = #{textContent},</if>

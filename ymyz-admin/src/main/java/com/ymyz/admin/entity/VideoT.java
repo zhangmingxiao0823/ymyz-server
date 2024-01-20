@@ -29,7 +29,7 @@ public class VideoT extends BaseEntity {
      * 视频封面图片id
      */
     @Excel(name = "视频封面图片id")
-    private Long imageId;
+    private Long photoId;
 
     /**
      * 视频文本id

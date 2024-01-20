@@ -6,7 +6,7 @@
       </div>
     </div>
     <!-- eslint-disable-next-line -->
-    <div :style="{backgroundImage: `url(${image})`}" class="pan-thumb"></div>
+    <div :style="{backgroundphoto: `url(${photo})`}" class="pan-thumb"></div>
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 export default {
   name: 'PanThumb',
   props: {
-    image: {
+    photo: {
       type: String,
       required: true
     },

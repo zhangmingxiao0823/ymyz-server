@@ -314,7 +314,7 @@
                 <li>侧边栏菜单名称过长悬停显示标题</li>
                 <li>用户访问控制时校验数据权限，防止越权</li>
                 <li>导出Excel时屏蔽公式，防止CSV注入风险</li>
-                <li>组件ImageUpload支持多图同时选择上传</li>
+                <li>组件photoUpload支持多图同时选择上传</li>
                 <li>组件FileUpload支持多文件同时选择上传</li>
                 <li>代码生成树表新增(展开/折叠)</li>
                 <li>代码生成子表支持日期/字典配置</li>
@@ -474,7 +474,7 @@
                 <li>系统布局配置支持动态标题开关</li>
                 <li>增加字典标签样式回显dict组件</li>
                 <li>FileUpload组件支持多文件上传</li>
-                <li>ImageUpload组件支持多图片上传</li>
+                <li>photoUpload组件支持多图片上传</li>
                 <li>封装通用iframe组件</li>
                 <li>菜单路由配置支持内链访问</li>
                 <li>全局注册通用组件</li>
@@ -581,7 +581,7 @@
                 <li>代码生成模板支持主子表</li>
                 <li>表格右侧工具栏组件支持显隐列</li>
                 <li>图片组件添加预览&移除功能</li>
-                <li>Excel注解支持Image图片导出</li>
+                <li>Excel注解支持photo图片导出</li>
                 <li>操作按钮组调整为朴素按钮样式</li>
                 <li>代码生成支持文件上传组件</li>
                 <li>代码生成日期控件区分范围</li>
@@ -858,7 +858,7 @@
           </div>
           <div class="body">
             <img
-              src="@/assets/images/pay.png"
+              src="@/assets/photos/pay.png"
               alt="donate"
               width="100%"
             />

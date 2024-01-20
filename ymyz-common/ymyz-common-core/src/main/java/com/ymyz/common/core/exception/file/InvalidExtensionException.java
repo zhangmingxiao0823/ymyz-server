@@ -38,11 +38,11 @@ public class InvalidExtensionException extends FileUploadException
         return filename;
     }
 
-    public static class InvalidImageExtensionException extends InvalidExtensionException
+    public static class InvalidphotoExtensionException extends InvalidExtensionException
     {
         private static final long serialVersionUID = 1L;
 
-        public InvalidImageExtensionException(String[] allowedExtension, String extension, String filename)
+        public InvalidphotoExtensionException(String[] allowedExtension, String extension, String filename)
         {
             super(allowedExtension, extension, filename);
         }

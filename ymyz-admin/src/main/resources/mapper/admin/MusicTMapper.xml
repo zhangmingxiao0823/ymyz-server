@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="com.ymyz.admin.entity.MusicT" id="MusicTResult">
         <result property="musicId"    column="music_id"    />
-        <result property="imageId"    column="image_id"    />
+        <result property="photoId"    column="photo_id"    />
         <result property="textId"    column="text_id"    />
         <result property="musicName"    column="music_name"    />
         <result property="musicFormat"    column="music_format"    />
@@ -21,13 +21,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMusicTVo">
-        select music_id, image_id, text_id, music_name, music_format, music_type, music_author, music_file, music_del, create_name, create_time, update_name, update_time from music_t
+        select music_id, photo_id, text_id, music_name, music_format, music_type, music_author, music_file, music_del, create_name, create_time, update_name, update_time from music_t
     </sql>
 
-    <select id="selectMusicTList" parameterType="MusicT" resultMap="MusicTResult">
+    <select id="selectMusicTList" parameterType="com.ymyz.admin.entity.MusicT" resultMap="MusicTResult">
         <include refid="selectMusicTVo"/>
         <where>  
-            <if test="imageId != null "> and image_id = #{imageId}</if>
+            <if test="photoId != null "> and photo_id = #{photoId}</if>
             <if test="textId != null "> and text_id = #{textId}</if>
             <if test="musicName != null  and musicName != ''"> and music_name like concat('%', #{musicName}, '%')</if>
             <if test="musicFormat != null "> and music_format = #{musicFormat}</if>
@@ -45,10 +45,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where music_id = #{musicId}
     </select>
         
-    <insert id="insertMusicT" parameterType="MusicT" useGeneratedKeys="true" keyProperty="musicId">
+    <insert id="insertMusicT" parameterType="com.ymyz.admin.entity.MusicT" useGeneratedKeys="true" keyProperty="musicId">
         insert into music_t
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="imageId != null">image_id,</if>
+            <if test="photoId != null">photo_id,</if>
             <if test="textId != null">text_id,</if>
             <if test="musicName != null and musicName != ''">music_name,</if>
             <if test="musicFormat != null">music_format,</if>
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="imageId != null">#{imageId},</if>
+            <if test="photoId != null">#{photoId},</if>
             <if test="textId != null">#{textId},</if>
             <if test="musicName != null and musicName != ''">#{musicName},</if>
             <if test="musicFormat != null">#{musicFormat},</if>
@@ -77,10 +77,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateMusicT" parameterType="MusicT">
+    <update id="updateMusicT" parameterType="com.ymyz.admin.entity.MusicT">
         update music_t
         <trim prefix="SET" suffixOverrides=",">
-            <if test="imageId != null">image_id = #{imageId},</if>
+            <if test="photoId != null">photo_id = #{photoId},</if>
             <if test="textId != null">text_id = #{textId},</if>
             <if test="musicName != null and musicName != ''">music_name = #{musicName},</if>
             <if test="musicFormat != null">music_format = #{musicFormat},</if>

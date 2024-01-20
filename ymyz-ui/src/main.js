@@ -28,9 +28,9 @@ import Editor from "@/components/Editor"
 // 文件上传组件
 import FileUpload from "@/components/FileUpload"
 // 图片上传组件
-import ImageUpload from "@/components/ImageUpload"
+import photoUpload from "@/components/photoUpload"
 // 图片预览组件
-import ImagePreview from "@/components/ImagePreview"
+import photoPreview from "@/components/photoPreview"
 // 字典标签组件
 import DictTag from '@/components/DictTag'
 // 头部标签组件
@@ -55,8 +55,8 @@ Vue.component('Pagination', Pagination)
 Vue.component('RightToolbar', RightToolbar)
 Vue.component('Editor', Editor)
 Vue.component('FileUpload', FileUpload)
-Vue.component('ImageUpload', ImageUpload)
-Vue.component('ImagePreview', ImagePreview)
+Vue.component('photoUpload', photoUpload)
+Vue.component('photoPreview', photoPreview)
 
 Vue.use(directive)
 Vue.use(plugins)

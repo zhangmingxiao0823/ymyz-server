@@ -2,11 +2,10 @@ package com.ymyz.common.core.constant;
 
 /**
  * 服务名称
- * 
+ *
  * @author zhangmingxiao
  */
-public class ServiceNameConstants
-{
+public class ServiceNameConstants {
     /**
      * 认证服务的serviceid
      */

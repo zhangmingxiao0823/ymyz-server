@@ -112,7 +112,7 @@ export default {
       getCodeImg().then(res => {
         this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
         if (this.captchaEnabled) {
-          this.codeUrl = "data:image/gif;base64," + res.img;
+          this.codeUrl = "data:photo/gif;base64," + res.img;
           this.loginForm.uuid = res.uuid;
         }
       });
@@ -161,7 +161,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/login-background.jpg");
+  background-photo: url("../assets/photos/login-background.jpg");
   background-size: cover;
 }
 .title {

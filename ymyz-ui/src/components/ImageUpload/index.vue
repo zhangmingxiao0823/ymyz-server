@@ -1,5 +1,5 @@
 <template>
-  <div class="component-upload-image">
+  <div class="component-upload-photo">
     <el-upload
       multiple
       :action="uploadImgUrl"
@@ -9,7 +9,7 @@
       :limit="limit"
       :on-error="handleUploadError"
       :on-exceed="handleExceed"
-      ref="imageUpload"
+      ref="photoUpload"
       :on-remove="handleDelete"
       :show-file-list="true"
       :headers="headers"
@@ -19,7 +19,7 @@
     >
       <i class="el-icon-plus"></i>
     </el-upload>
-    
+
     <!-- 上传提示 -->
     <div class="el-upload__tip" slot="tip" v-if="showTip">
       请上传
@@ -35,7 +35,7 @@
       append-to-body
     >
       <img
-        :src="dialogImageUrl"
+        :src="dialogphotoUrl"
         style="display: block; max-width: 100%; margin: 0 auto"
       />
     </el-dialog>
@@ -73,7 +73,7 @@ export default {
     return {
       number: 0,
       uploadList: [],
-      dialogImageUrl: "",
+      dialogphotoUrl: "",
       dialogVisible: false,
       hideUpload: false,
       uploadImgUrl: process.env.VUE_APP_BASE_API + "/file/upload", // 上传的图片服务器地址
@@ -126,7 +126,7 @@ export default {
           return false;
         });
       } else {
-        isImg = file.type.indexOf("image") > -1;
+        isImg = file.type.indexOf("photo") > -1;
       }
 
       if (!isImg) {
@@ -156,7 +156,7 @@ export default {
         this.number--;
         this.$modal.closeLoading();
         this.$modal.msgError(res.msg);
-        this.$refs.imageUpload.handleRemove(file);
+        this.$refs.photoUpload.handleRemove(file);
         this.uploadedSuccessfully();
       }
     },
@@ -185,7 +185,7 @@ export default {
     },
     // 预览
     handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
+      this.dialogphotoUrl = file.url;
       this.dialogVisible = true;
     },
     // 对象转成指定字符串分隔

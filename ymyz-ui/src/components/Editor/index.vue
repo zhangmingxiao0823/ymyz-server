@@ -82,7 +82,7 @@ export default {
             [{ color: [] }, { background: [] }],             // 字体颜色、字体背景颜色
             [{ align: [] }],                                 // 对齐方式
             ["clean"],                                       // 清除文本格式
-            ["link", "image", "video"]                       // 链接、图片、视频
+            ["link", "photo", "video"]                       // 链接、图片、视频
           ],
         },
         placeholder: "请输入内容",
@@ -128,11 +128,11 @@ export default {
       // 如果设置了上传地址则自定义图片上传事件
       if (this.type == 'url') {
         let toolbar = this.Quill.getModule("toolbar");
-        toolbar.addHandler("image", (value) => {
+        toolbar.addHandler("photo", (value) => {
           if (value) {
             this.$refs.upload.$children[0].$refs.input.click();
           } else {
-            this.quill.format("image", false);
+            this.quill.format("photo", false);
           }
         });
       }
@@ -157,7 +157,7 @@ export default {
     },
     // 上传前校检格式和大小
     handleBeforeUpload(file) {
-      const type = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
+      const type = ["photo/jpeg", "photo/jpg", "photo/png", "photo/svg"];
       const isJPG = type.includes(file.type);
       // 检验文件格式
       if (!isJPG) {
@@ -182,7 +182,7 @@ export default {
         // 获取光标所在位置
         let length = quill.getSelection().index;
         // 插入图片  res.url为服务器返回的图片地址
-        quill.insertEmbed(length, "image", res.data.url);
+        quill.insertEmbed(length, "photo", res.data.url);
         // 调整光标到最后
         quill.setSelection(length + 1);
       } else {

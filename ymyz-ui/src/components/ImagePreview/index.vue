@@ -1,19 +1,19 @@
 <template>
-  <el-image
+  <el-photo
     :src="`${realSrc}`"
     fit="cover"
     :style="`width:${realWidth};height:${realHeight};`"
     :preview-src-list="realSrcList"
   >
-    <div slot="error" class="image-slot">
+    <div slot="error" class="photo-slot">
       <i class="el-icon-picture-outline"></i>
     </div>
-  </el-image>
+  </el-photo>
 </template>
 
 <script>
 export default {
-  name: "ImagePreview",
+  name: "photoPreview",
   props: {
     src: {
       type: String,
@@ -58,18 +58,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-image {
+.el-photo {
   border-radius: 5px;
   background-color: #ebeef5;
   box-shadow: 0 0 5px 1px #ccc;
-  ::v-deep .el-image__inner {
+  ::v-deep .el-photo__inner {
     transition: all 0.3s;
     cursor: pointer;
     &:hover {
       transform: scale(1.2);
     }
   }
-  ::v-deep .image-slot {
+  ::v-deep .photo-slot {
     display: flex;
     justify-content: center;
     align-items: center;

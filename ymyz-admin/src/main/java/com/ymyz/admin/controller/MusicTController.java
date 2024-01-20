@@ -64,7 +64,7 @@ public class MusicTController extends BaseController {
      */
     @RequiresPermissions("admin:music:add")
     @Log(title = "音乐管理", businessType = BusinessType.INSERT)
-    @PostMapping
+    @PostMapping("/add")
     public AjaxResult add(@RequestBody MusicT musicT) {
         return toAjax(musicTService.insertMusicT(musicT));
     }
@@ -74,7 +74,7 @@ public class MusicTController extends BaseController {
      */
     @RequiresPermissions("admin:music:edit")
     @Log(title = "音乐管理", businessType = BusinessType.UPDATE)
-    @PutMapping
+    @PostMapping("/update")
     public AjaxResult edit(@RequestBody MusicT musicT) {
         return toAjax(musicTService.updateMusicT(musicT));
     }
@@ -84,7 +84,7 @@ public class MusicTController extends BaseController {
      */
     @RequiresPermissions("admin:music:remove")
     @Log(title = "音乐管理", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{musicIds}")
+    @PostMapping("/{musicIds}")
     public AjaxResult remove(@PathVariable Long[] musicIds) {
         return toAjax(musicTService.deleteMusicTByMusicIds(musicIds));
     }
